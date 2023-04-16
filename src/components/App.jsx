@@ -35,13 +35,17 @@ class App extends Component {
           options={this.state}
           onLeaveFeedback={this.onLeaveFeedback}
         />
-        <Statistics
-          good={this.state.good}
-          neutral={this.state.neutral}
-          bad={this.state.bad}
-          total={this.countTotalFeedback()}
-          positivePercentage={this.countPositiveFeedbackPercentage()}
-        ></Statistics>
+        {this.countTotalFeedback() > 0 ? (
+          <Statistics
+            good={this.state.good}
+            neutral={this.state.neutral}
+            bad={this.state.bad}
+            total={this.countTotalFeedback()}
+            positivePercentage={this.countPositiveFeedbackPercentage()}
+          ></Statistics>
+        ) : (
+          'There is no feedback'
+        )}
       </Section>
     );
   }
